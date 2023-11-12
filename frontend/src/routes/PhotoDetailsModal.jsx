@@ -4,18 +4,19 @@ import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoListItem from '../components/PhotoListItem';
 import PhotoFavButton from '../components/PhotoFavButton';
 
-const PhotoDetailsModal = ({ isOpen, onClose, data }) => {
+const PhotoDetailsModal = ({ isOpen, onClose, data, toggleFavorite, isFavorite, favorites  }) => {
   if (!isOpen) return null;
+
+  const handleFavoriteToggle = () => {
+    toggleFavorite(data.id);
+  };
 
   const handleClose = () => {
     onClose();
   };
 
-  // Check if data.similar_photos is an array, otherwise, provide an empty array as a fallback
-  //const similarPhotos = Array.isArray(data.similar_photos) ? data.similar_photos : [];
 
   const similarPhotos = data.similar_photos;
-
   console.log(similarPhotos);
 
   return (
@@ -31,7 +32,7 @@ const PhotoDetailsModal = ({ isOpen, onClose, data }) => {
           <div className="photo-details-modal__top-bar">
             <h2 className="photo-details-modal__header">Photo Details</h2>
             <div className="photo-details-modal__photo-fav-button">
-              <PhotoFavButton /> {/* Include the PhotoFavButton component */}
+              <PhotoFavButton onFavToggle={handleFavoriteToggle} isSelected={isFavorite} /> 
             </div>
           </div>
           <hr className="photo-details-modal__line" />
@@ -45,7 +46,13 @@ const PhotoDetailsModal = ({ isOpen, onClose, data }) => {
           <h2 className="photo-details-modal__header">Similar Photos</h2>
            <div className="photo-details-modal__images">
            {Object.keys(similarPhotos).map((photo) => (
-          <PhotoListItem key={photo.id} data={similarPhotos[photo]}/>
+          <PhotoListItem 
+          key={photo.id} 
+          data={similarPhotos[photo]}
+          onFavToggle={() => toggleFavorite(photo.id)} 
+          isFavorite={favorites.includes(photo.id)}
+          
+          />
       ))}
           </div>
         </div>
@@ -53,8 +60,6 @@ const PhotoDetailsModal = ({ isOpen, onClose, data }) => {
     </div>
   );
 };
-
-//<img className="photo-list__user-profile" src={data.user.profile} alt={`Profile of ${data.user.name}`} />
 
 export default PhotoDetailsModal;
 

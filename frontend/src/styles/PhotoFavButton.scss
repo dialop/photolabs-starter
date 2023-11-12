@@ -6,13 +6,15 @@
   margin-bottom: -30px;
   border-width: 0.1px;
   background-color: #EEEEEE;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   text-align: center;
   border-radius: 100%;
+  border: 2px solid #CCCCCC;
 }
 
 .photo-list__fav-icon-svg {
-  padding: 7px;
+  padding: 9px;
   top: 2px;
+  fill: #333;
 }

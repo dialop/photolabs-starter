@@ -1,33 +1,39 @@
-// App.jsx
-import React, { useState } from 'react';
-import PhotoList from './components/PhotoList';
+import React from 'react';
 import TopNavigationBar from './components/TopNavigationBar';
-import photos from './mocks/photos';
-import topics from './mocks/topics';
-import './App.scss';
+import PhotoList from './components/PhotoList';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
+import useApplicationData from './hooks/useApplicationData';
+import './App.scss';
+import photos from './mocks/photos'; 
 
 const App = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [selectedPhotoData, setSelectedPhotoData] = useState(null); // Add state for selected photo data
-
-  const openModal = (photoData) => {
-    setSelectedPhotoData(photoData); // Set the selected photo data
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setSelectedPhotoData(null); // Reset selected photo data
-    setModalOpen(false);
-  };
+  // Use the custom hook to get state and function handlers
+  const {
+    state,
+    onPhotoSelect,
+    updateToFavPhotoIds,
+    onClosePhotoDetailsModal,
+  } = useApplicationData();
 
   return (
     <div className="App">
-      <TopNavigationBar topics={topics} />
-      <PhotoList data={photos} onPhotoClick={openModal} />
-      <PhotoDetailsModal isOpen={isModalOpen} onClose={closeModal} data={selectedPhotoData} />
+      <TopNavigationBar isFavPhotoExist={state.favorites.length > 0} />
+      <PhotoList 
+        data={photos} 
+        onPhotoClick={onPhotoSelect} 
+        favorites={state.favorites} 
+        toggleFavorite={updateToFavPhotoIds} 
+      />
+      <PhotoDetailsModal 
+        isOpen={state.isModalOpen} 
+        onClose={onClosePhotoDetailsModal} 
+        data={state.selectedPhotoData} 
+        toggleFavorite={updateToFavPhotoIds} 
+        isFavorite={state.selectedPhotoData ? state.favorites.includes(state.selectedPhotoData.id) : false}
+        favorites={state.favorites}
+      />
     </div>
   );
-}
+};
 
 export default App;
