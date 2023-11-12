@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
+
+import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton() {
-  const [isLiked, setIsLiked] = useState(false);
 
-  const handleLikeClick = () => {
-    setIsLiked(!isLiked);
+  const [selected, setFav] = useState(false);
+
+  const switchState = () => {
+    setFav(selected === true ? false : true);
+    console.log(selected);
   };
 
-  const buttonClass = isLiked ? 'photo-list__fav-icon active' : 'photo-list__fav-icon';
-
   return (
-    <button className={buttonClass} onClick={handleLikeClick}>
-      <i className={`${isLiked ? "fas fa-heart" : "far fa-heart"}`}></i>
-    </button>
+    <div className="photo-list__fav-icon" onClick={switchState}>
+      <div className="photo-list__fav-icon-svg">
+        <FavIcon selected={selected}/>
+      </div>
+    </div>
   );
 }
 

@@ -4,24 +4,24 @@
   border-width: 0.5px;
   border-color: lightgray;
   border-style: solid;
-  border-radius: 8px;
+  border-radius: 32px;
   max-width: fit-content;
-  position: relative;
+}
+
+ .photo-list__image {
+   user-select: none;
+   width: 300px;
+   height: 200px;
+   object-fit: cover;
 }
 
 .photo-list__image {
+  border-radius: 32px;
   user-select: none;
-  width: 300px;
-  height: 200px;
+  width: 500px;
+  height: 300px;
   object-fit: cover;
-}
-
-.photo-list__image {
-  border-radius: 8px 8px 0px 0px;
-  user-select: none;
-  width: 300px;
-  height: 200px;
-  object-fit: cover;
+  
 }
 
 .photo-list__user-profile {
@@ -47,4 +47,3 @@
 .photo-list__user-location {
   color: #838383;
 }
-

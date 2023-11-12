@@ -1,46 +1,71 @@
 import React from 'react';
-import PhotoListItem from './components/PhotoListItem';
-import PhotoFavButton from './components/PhotoFavButton';
+import PhotoList from './components/PhotoList';
+import TopicList from './components/TopicList';
+import TopNavigationBar from './components/TopNavigationBar';
+import './App.scss';
 
-
-const sampleDataForPhotoListItem = [
+const sampleDataForPhotoList = [
   {
     id: "1",
     location: {
       city: "Montreal",
       country: "Canada",
     },
-    imageSource: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
-    username: "Joe Example",
-    userProfileImage: `${process.env.PUBLIC_URL}/profile-1.jpg`,
+    urls: {
+      full: `${process.env.PUBLIC_URL}/Image-1-Full.jpeg`,
+      regular: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
+    },
+    user: {
+      id: "1",
+      username: "exampleuser",
+      name: "Joe Example",
+      profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
+    },
   },
   {
     id: "2",
     location: {
-      city: "New York",
-      country: "USA",
+      city: "Toronto",
+      country: "Canada",
     },
-    imageSource: `${process.env.PUBLIC_URL}/Image-2-Regular.jpeg`,
-    username: "Alice Smith",
-    userProfileImage: `${process.env.PUBLIC_URL}/profile-2.jpg`,
+    urls: {
+      full: `${process.env.PUBLIC_URL}/Image-2-Full.jpeg`,
+      regular: `${process.env.PUBLIC_URL}/Image-2-Regular.jpeg`,
+    },
+    user: {
+      id: "2",
+      username: "exampleuser",
+      name: "Joe Example",
+      profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
+    },
   },
   {
     id: "3",
     location: {
-      city: "Paris",
-      country: "France",
+      city: "Ottawa",
+      country: "Canada",
     },
-    imageSource: `${process.env.PUBLIC_URL}/Image-3-Regular.jpeg`,
-    username: "Bob Johnson",
-    userProfileImage: `${process.env.PUBLIC_URL}/profile-3.jpg`,
+    urls: {
+      full: `${process.env.PUBLIC_URL}/Image-3-Full.jpeg`,
+      regular: `${process.env.PUBLIC_URL}/Image-3-Regular.jpeg`,
+    },
+    user: {
+      id: "3",
+      username: "exampleuser",
+      name: "Joe Example",
+      profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
+    },
   },
 ];
 
+
+const sampleTopics = ['Nature', 'Cities', 'People', 'Animals'];
+
 const App = () => (
   <div className="App">
-    {sampleDataForPhotoListItem.map((data) => (
-      <PhotoListItem key={data.id} data={data} />
-    ))}
+    <TopicList topics={sampleTopics} />
+    <TopNavigationBar/>
+    <PhotoList data={PhotoList.sampleDataForPhotoListItem} />
   </div>
 );
 
