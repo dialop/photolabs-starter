@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TopNavigationBar from './components/TopNavigationBar';
 import PhotoList from './components/PhotoList';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
 import useApplicationData from './hooks/useApplicationData';
 import './App.scss';
-import photos from './mocks/photos'; 
 
 const App = () => {
+  const [photos, setPhotos] = useState([]); // Add this line to hold the fetched photos
   // Use the custom hook to get state and function handlers
   const {
     state,
@@ -15,11 +15,19 @@ const App = () => {
     onClosePhotoDetailsModal,
   } = useApplicationData();
 
+  useEffect(() => {
+    // Fetch photos from your API
+    fetch('/api/photos')
+      .then((response) => response.json())
+      .then((data) => setPhotos(data)) // Set the photos in state
+      .catch((error) => console.error('Error:', error));
+  }, []); // The empty array ensures this effect only runs once
+
   return (
     <div className="App">
       <TopNavigationBar isFavPhotoExist={state.favorites.length > 0} />
       <PhotoList 
-        data={photos} 
+        data={photos} // Replace the hardcoded data with the fetched photos
         onPhotoClick={onPhotoSelect} 
         favorites={state.favorites} 
         toggleFavorite={updateToFavPhotoIds} 
