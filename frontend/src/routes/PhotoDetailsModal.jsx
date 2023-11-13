@@ -30,7 +30,7 @@ const PhotoDetailsModal = ({ isOpen, onClose, data, toggleFavorite, isFavorite, 
         </div>
         <div className="photo-details-modal__container">
           <div className="photo-details-modal__top-bar">
-            <h2 className="photo-details-modal__header">Photo Details</h2>
+            <h2 className="photo-details-modal__header"></h2>
             <div className="photo-details-modal__photo-fav-button">
               <PhotoFavButton onFavToggle={handleFavoriteToggle} isSelected={isFavorite} /> 
             </div>

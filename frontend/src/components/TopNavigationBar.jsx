@@ -9,9 +9,13 @@ const TopNavigationBar = ({
   fetchPhotosByTopic
 }) => {
 
+  function reloadPage() {
+    window.location.reload(false);
+  }
+
   return (
     <div className="top-nav-bar">
-      <span className="top-nav-bar__logo">PhotoLabs</span>
+      <span className="top-nav-bar__logo" onClick={reloadPage}>PhotoLabs</span>
       <TopicList
         topics={topics} 
         fetchPhotosByTopic={fetchPhotosByTopic}

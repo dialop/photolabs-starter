@@ -6,28 +6,23 @@ import useApplicationData from './hooks/useApplicationData';
 import './App.scss';
 
 const App = () => {
-  const [photos, setPhotos] = useState([]); // Add this line to hold the fetched photos
-  // Use the custom hook to get state and function handlers
+  // Use the custom hook to get state, function handlers, and fetchPhotosByTopic
   const {
     state,
     onPhotoSelect,
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,
+    fetchPhotosByTopic 
   } = useApplicationData();
-
-  useEffect(() => {
-    // Fetch photos from your API
-    fetch('/api/photos')
-      .then((response) => response.json())
-      .then((data) => setPhotos(data)) // Set the photos in state
-      .catch((error) => console.error('Error:', error));
-  }, []); // The empty array ensures this effect only runs once
 
   return (
     <div className="App">
-      <TopNavigationBar isFavPhotoExist={state.favorites.length > 0} />
+      <TopNavigationBar 
+        isFavPhotoExist={state.favorites.length > 0} 
+        fetchPhotosByTopic={fetchPhotosByTopic} 
+      />
       <PhotoList 
-        data={photos} // Replace the hardcoded data with the fetched photos
+        data={state.photoData} // Use state.photoData from useApplicationData
         onPhotoClick={onPhotoSelect} 
         favorites={state.favorites} 
         toggleFavorite={updateToFavPhotoIds} 

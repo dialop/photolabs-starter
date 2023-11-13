@@ -4,7 +4,7 @@
   position: absolute;
   top: 55%;
   left: 50%;
-  transform: translate(-50%, -40%);
+  transform: translate(-50%, -50%);
   height: 80%;
   width: 55%;
   overflow-y: scroll;
@@ -29,11 +29,14 @@
   border-radius: 8px;
   margin-left: 20px;
   margin-top: 8px;
+  margin: 0 auto; // Center the image horizontally within the modal
+  display: block; // Ensures it is treated as a block-level element
 }
 
 .photo-details-modal__images {
   margin-left: 36px;
   margin-top: 8px;
+
 }
 
 .photo-details-modal__top-bar {
@@ -49,12 +52,20 @@
   display: flex;
   font-size: 16px;
   font-weight: normal;
+  align-items: center; // To align items vertically
+  justify-content: start; // Align content to the start of the flex container
 
 }
 
 .photo-details-modal__photographer-location {
   color: #838383;
+  position: relative;
+  right: 70px;
+  padding: 8px;
+  width: 100%;
+  text-align: left;
 }
+
 .photo-details-modal__photographer-profile {
   object-fit: cover;
   border-radius: 100%;
@@ -71,6 +82,7 @@
   margin-left: 8px;
 }
 
+
 .photo-details-modal__container {
   margin-left: 20px;
 }
@@ -85,6 +97,7 @@
   height: 32px;
   text-align: center;
   border-radius: 100%;
+  
 }
 .photo-details-modal__header {
   font-size: 18px;
@@ -97,5 +110,6 @@
 
 .photo-details-modal__line {
   border-top: 1px solid #cdc8c8;
+  display: none;
 }
 

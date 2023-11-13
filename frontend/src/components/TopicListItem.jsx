@@ -1,8 +1,9 @@
 import React from 'react';
 import '../styles/TopicListItem.scss';
 
-const TopicListItem = ({ data }) => {
+const TopicListItem = ({ data, onTopicClick }) => {
   const selectCateg = () => {
+    onTopicClick(data.id);
   }
 
   return (
