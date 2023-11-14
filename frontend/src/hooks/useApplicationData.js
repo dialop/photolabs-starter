@@ -46,7 +46,7 @@ const useApplicationData = () => {
 
   // Fetch photo data using Axios
   useEffect(() => {
-    axios.get("/api/photos")
+    axios.get("http://localhost:8001/api/photos")
       .then((response) => {
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: response.data });
       })
@@ -55,7 +55,7 @@ const useApplicationData = () => {
 
   // Fetch topic data using Axios
   useEffect(() => {
-    axios.get("/api/topics")
+    axios.get("http://localhost:8001/api/topics")
       .then((response) => {
         dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: response.data });
       })
