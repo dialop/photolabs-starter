@@ -39,6 +39,7 @@
     ]
   },
   "devDependencies": {
-    "sass": "^1.69.5"
+    "sass": "^1.69.5",
+    "terser-brunch": "^4.1.0"
   }
 }

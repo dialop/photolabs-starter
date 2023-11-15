@@ -15,7 +15,7 @@ const TopNavigationBar = ({
 
   return (
     <div className="top-nav-bar">
-      <span className="top-nav-bar__logo" onClick={reloadPage}>PhotoLabs</span>
+      <span className="top-nav-bar__logo" onClick={reloadPage} style={{ cursor: 'pointer' }}>PhotoLabs</span>
       <TopicList
         topics={topics} 
         fetchPhotosByTopic={fetchPhotosByTopic}
