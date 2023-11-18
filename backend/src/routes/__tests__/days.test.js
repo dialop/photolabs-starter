@@ -1,3 +1,5 @@
+// ----    API Endpoint Testing for Days ---- //
+
 const request = require("supertest");
 const generateApplication = require("../../application");
 

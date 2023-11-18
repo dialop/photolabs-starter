@@ -1,3 +1,5 @@
+// ---- Express Router for Topic API Endpoints ---- //
+
 const router = require("express").Router();
 
 module.exports = db => {

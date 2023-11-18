@@ -1,3 +1,5 @@
+// ---- PSQL Database Client Configuration ---- //
+
 const pg = require("pg");
 
 const client = new pg.Client({
