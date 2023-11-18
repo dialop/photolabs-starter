@@ -1,3 +1,5 @@
+// ---- Main App Component---- //
+
 import React, { useState, useEffect } from 'react';
 import TopNavigationBar from './components/TopNavigationBar';
 import PhotoList from './components/PhotoList';
@@ -6,7 +8,6 @@ import useApplicationData from './hooks/useApplicationData';
 import './App.scss';
 
 const App = () => {
-  // Use the custom hook to get state, function handlers, and fetchPhotosByTopic
   const {
     state,
     onPhotoSelect,
@@ -22,7 +23,7 @@ const App = () => {
         fetchPhotosByTopic={fetchPhotosByTopic} 
       />
       <PhotoList 
-        data={state.photoData} // Use state.photoData from useApplicationData
+        data={state.photoData} 
         onPhotoClick={onPhotoSelect} 
         favorites={state.favorites} 
         toggleFavorite={updateToFavPhotoIds} 

@@ -1,3 +1,5 @@
+// ---- Modal Photo Detail Styling ---- //
+
 .photo-details-modal {
   background-color: white;
   box-shadow: 0 0 0 50vmax rgba(0,0,0,.5);
@@ -25,18 +27,24 @@
 }
 
 .photo-details-modal__image {
-  max-width: 95%;
-  border-radius: 8px;
-  margin-left: 20px;
-  margin-top: 8px;
-  margin: 0 auto; // Center the image horizontally within the modal
-  display: block; // Ensures it is treated as a block-level element
+  max-width: 95%; 
+  max-height: 40%; 
+  height: auto; 
+  width: auto; 
+  display: block;
+  margin: 0 auto;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  
 }
-
 .photo-details-modal__images {
-  margin-left: 36px;
-  margin-top: 8px;
-
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+  justify-content: center;
+  justify-items: center;
 }
 
 .photo-details-modal__top-bar {
@@ -48,33 +56,6 @@
   align-items: center;
 }
 
-.photo-details-modal__photographer-details {
-  display: flex;
-  font-size: 16px;
-  font-weight: normal;
-  align-items: center; // To align items vertically
-  justify-content: start; // Align content to the start of the flex container
-
-}
-
-.photo-details-modal__photographer-location {
-  color: #838383;
-  position: relative;
-  right: 70px;
-  padding: 8px;
-  width: 100%;
-  text-align: left;
-}
-
-.photo-details-modal__photographer-profile {
-  object-fit: cover;
-  border-radius: 100%;
-  vertical-align: middle;
-  margin-right: 8px;
-  width: 40px;
-  height: 40px;
-}
-
 .photo-details-modal__photographer-info {
   margin-top: 5px;
   font-weight: 700;
@@ -82,7 +63,27 @@
   margin-left: 8px;
 }
 
+.photo-details-modal__photographer-location {
+  color: #838383;
+  margin: 0;
+}
 
+.photo-details-modal__photographer-profile {
+  object-fit: cover;
+    border-radius: 100%;
+    vertical-align: middle;
+    margin-right: 8px;
+    margin-left: 16px;
+    padding-left: 0;
+    width: 60px;
+    height: 60px;
+  }
+  
+.photo-details-modal__photographer-details {
+  display: flex;
+  align-items: center; 
+  gap: 10px; 
+}
 .photo-details-modal__container {
   margin-left: 20px;
 }
@@ -90,7 +91,7 @@
 .photo-details-modal__photo-fav-button {
   position: absolute;
   top: 50px;
-  left: 20px; 
+  left: 40px; 
   cursor: pointer;
   border-width: 0.1px;
   width: 32px;
@@ -105,11 +106,14 @@
   color: #1e1e1e;
   margin-top: 24px;
   margin-bottom: 24px;
-  width: 90%;
+  margin-right: 0; 
+  text-align: left; 
+  margin-left: 20px;
 }
 
 .photo-details-modal__line {
-  border-top: 1px solid #cdc8c8;
-  display: none;
+  border-top: 0.5px  #cdc8c8; 
+  width: 96%; 
+  margin: 0;
+  margin-left: 20px;
 }
-

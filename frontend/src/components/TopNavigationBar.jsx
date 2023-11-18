@@ -1,3 +1,5 @@
+// ---- TopNavigationBar Component ---- //
+
 import React from 'react';
 import '../styles/TopNavigationBar.scss';
 import FavBadge from './FavBadge';

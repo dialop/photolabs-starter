@@ -1,3 +1,5 @@
+// ---- PhotoList Component ---- //
+
 import React from 'react';
 import PhotoListItem from './PhotoListItem';
 import '../styles/PhotoList.scss';

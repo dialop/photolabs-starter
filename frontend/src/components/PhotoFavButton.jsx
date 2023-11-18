@@ -1,3 +1,5 @@
+// ---- PhotoFavButton Component ---- //
+
 import React, { useState } from 'react';
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';

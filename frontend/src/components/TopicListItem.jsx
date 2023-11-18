@@ -1,3 +1,5 @@
+// ---- TopicListItem Component ---- //
+
 import React from 'react';
 import '../styles/TopicListItem.scss';
 

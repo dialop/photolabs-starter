@@ -1,3 +1,5 @@
+// ---- TopicList Component ---- //
+
 import React from 'react';
 import TopicListItem from './TopicListItem';
 

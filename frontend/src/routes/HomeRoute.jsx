@@ -1,3 +1,5 @@
+// ---- Homepage Route ---- //
+
 import React from "react";
 import TopNavigationBar from "../components/TopNavigationBar";
 import PhotoList from "../components/PhotoList";

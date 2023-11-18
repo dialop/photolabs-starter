@@ -1,3 +1,5 @@
+// ---- Application Hook ---- //
+
 import { useReducer, useEffect } from 'react';
 import axios from "axios";
 
@@ -9,7 +11,7 @@ export const ACTIONS = {
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   CLOSE_PHOTO_DETAILS: 'CLOSE_PHOTO_DETAILS',
-  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS' // New action type for fetching photos by topic
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
 };
 
 function reducer(state, action) {
@@ -27,7 +29,7 @@ function reducer(state, action) {
     case ACTIONS.CLOSE_PHOTO_DETAILS:
       return { ...state, isModalOpen: false, selectedPhotoData: null };
     case ACTIONS.GET_PHOTOS_BY_TOPICS:
-      return { ...state, photoData: action.payload }; // Update photo data with photos for the selected topic
+      return { ...state, photoData: action.payload }; 
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }

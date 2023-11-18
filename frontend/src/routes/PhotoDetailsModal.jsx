@@ -1,10 +1,12 @@
+// ---- Modal Display Photo Details  ---- //
+
 import React from 'react';
 import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoListItem from '../components/PhotoListItem';
 import PhotoFavButton from '../components/PhotoFavButton';
 
-const PhotoDetailsModal = ({ isOpen, onClose, data, toggleFavorite, isFavorite, favorites  }) => {
+const PhotoDetailsModal = ({ isOpen, onClose, data, toggleFavorite, isFavorite, favorites }) => {
   if (!isOpen) return null;
 
   const handleFavoriteToggle = () => {
@@ -15,9 +17,7 @@ const PhotoDetailsModal = ({ isOpen, onClose, data, toggleFavorite, isFavorite, 
     onClose();
   };
 
-
-  const similarPhotos = data.similar_photos;
-  console.log(similarPhotos);
+  const similarPhotos = data.similar_photos || []; 
 
   return (
     <div className="photo-details-modal">
@@ -30,30 +30,30 @@ const PhotoDetailsModal = ({ isOpen, onClose, data, toggleFavorite, isFavorite, 
         </div>
         <div className="photo-details-modal__container">
           <div className="photo-details-modal__top-bar">
-            <h2 className="photo-details-modal__header"></h2>
             <div className="photo-details-modal__photo-fav-button">
-              <PhotoFavButton onFavToggle={handleFavoriteToggle} isSelected={isFavorite} /> 
+              <PhotoFavButton onFavToggle={handleFavoriteToggle} isSelected={isFavorite} />
             </div>
           </div>
-          <hr className="photo-details-modal__line" />
           <div className="photo-details-modal__photographer-details">
-          <img className="photo-details-modal__photographer-profile" src={data.user.profile} alt="Photographer" />
-          <p className="photo-details-modal__photographer-name">{data.user.name} </p>
-          <p className="photo-details-modal__photographer-location">{`${data.location.city}, ${data.location.country}`}</p>
-        </div>
-        </div>
-        <div className="photo-details-modal__similar-photos">
-          <h2 className="photo-details-modal__header">Similar Photos</h2>
-           <div className="photo-details-modal__images">
-           {Object.keys(similarPhotos).map((photo) => (
-          <PhotoListItem 
-          key={photo.id} 
-          data={similarPhotos[photo]}
-          onFavToggle={() => toggleFavorite(photo.id)} 
-          isFavorite={favorites.includes(photo.id)}
-          
-          />
-      ))}
+            <img className="photo-details-modal__photographer-profile" src={data.user.profile} alt="Photographer" />
+            <div className="photo-details-modal__photographer-info">
+              <p className="photo-details-modal__photographer-name">{data.user.name}</p>
+              <p className="photo-details-modal__photographer-location">{`${data.location.city}, ${data.location.country}`}</p>
+            </div>
+          </div>
+          <div className="photo-details-modal__similar-photos">
+            <h2 className="photo-details-modal__header">Similar Photos</h2>
+            <hr className="photo-details-modal__line" />
+            <div className="photo-details-modal__images">
+              {similarPhotos.map((photo) => (
+                <PhotoListItem
+                  key={photo.id}
+                  data={photo}
+                  onFavToggle={() => toggleFavorite(photo.id)}
+                  isFavorite={favorites.includes(photo.id)}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -62,5 +62,3 @@ const PhotoDetailsModal = ({ isOpen, onClose, data, toggleFavorite, isFavorite, 
 };
 
 export default PhotoDetailsModal;
-
-
