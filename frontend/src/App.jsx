@@ -1,10 +1,9 @@
 // ---- Main App Component---- //
 
-import React, { useState, useEffect } from 'react';
-import TopNavigationBar from './components/TopNavigationBar';
-import PhotoList from './components/PhotoList';
+import React from 'react';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
 import useApplicationData from './hooks/useApplicationData';
+import HomeRoute from './routes/HomeRoute'; 
 import './App.scss';
 
 const App = () => {
@@ -12,21 +11,15 @@ const App = () => {
     state,
     onPhotoSelect,
     updateToFavPhotoIds,
-    onClosePhotoDetailsModal,
-    fetchPhotosByTopic 
+    onClosePhotoDetailsModal, 
   } = useApplicationData();
 
   return (
     <div className="App">
-      <TopNavigationBar 
-        isFavPhotoExist={state.favorites.length > 0} 
-        fetchPhotosByTopic={fetchPhotosByTopic} 
-      />
-      <PhotoList 
-        data={state.photoData} 
-        onPhotoClick={onPhotoSelect} 
-        favorites={state.favorites} 
-        toggleFavorite={updateToFavPhotoIds} 
+      <HomeRoute 
+        state={state}
+        onPhotoSelect={onPhotoSelect}
+        updateToFavPhotoIds={updateToFavPhotoIds}
       />
       <PhotoDetailsModal 
         isOpen={state.isModalOpen} 

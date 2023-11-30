@@ -1,14 +1,11 @@
 // ---- PhotoFavButton Component ---- //
 
-import React, { useState } from 'react';
+import React from 'react';
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton({ onFavToggle, isSelected }) {
-  const [selected, setFav] = useState(isSelected);
-
   const switchState = () => {
-    setFav(!selected);
     onFavToggle();
   };
 
@@ -16,7 +13,7 @@ function PhotoFavButton({ onFavToggle, isSelected }) {
     <div className="photo-list__fav-icon" onClick={switchState}>
       <div className="photo-list__fav-icon-svg">
         <FavIcon 
-        selected={selected}
+          selected={isSelected}
         />
       </div>
     </div>
