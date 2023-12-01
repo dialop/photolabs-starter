@@ -10,7 +10,7 @@ const TopicListItem = ({ data, onTopicClick }) => {
 
   return (
     <div className="topic-list__item">
-      <span onClick={selectCateg} style={{ cursor: 'pointer' }}>{data.title}</span>
+      <span onClick={selectCateg}> {data.title}</span>
     </div>
   );
 };
