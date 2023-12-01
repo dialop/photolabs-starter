@@ -26,6 +26,7 @@ const PhotoDetailsModal = ({
     onClose();
   };
 
+  //Finds similar photos in state's photoData
   const findDataIndex = () => {
     for(let i = 0; i < state.photoData.length; i++){
     if(state.photoData[i].id === data.id){
@@ -34,6 +35,7 @@ const PhotoDetailsModal = ({
   }
   };
 const similarPhotos = findDataIndex() || [];
+
 
   return (
     <div className="photo-details-modal">

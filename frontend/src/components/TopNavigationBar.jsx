@@ -1,5 +1,3 @@
-// ---- TopNavigationBar Component ---- //
-
 import React, { useState, useEffect } from 'react';
 import '../styles/TopNavigationBar.scss';
 import FavBadge from './FavBadge';
@@ -12,14 +10,18 @@ const TopNavigationBar = ({
 }) => {
   const [topics, setTopics] = useState([]);
 
+  // Fetch topics data 
   useEffect(() => {
-    axios.get("http://localhost:8001/api/topics")
-      .then((response) => {
+    async function fetchTopics() {
+      try {
+        const response = await axios.get("http://localhost:8001/api/topics");
         setTopics(response.data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Error fetching topics:', error);
-      });
+      }
+    }
+
+    fetchTopics();
   }, []);
 
   function reloadPage() {
@@ -29,10 +31,14 @@ const TopNavigationBar = ({
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo" onClick={reloadPage}>PhotoLabs</span>
+
+     
       <TopicList
         topics={topics}
         fetchPhotosByTopic={fetchPhotosByTopic}
       />
+
+      
       <FavBadge
         isFavPhotoExist={isFavPhotoExist}
       />

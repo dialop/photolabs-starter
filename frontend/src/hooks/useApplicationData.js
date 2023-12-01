@@ -1,19 +1,18 @@
-// ---- Application Hook ---- //
-
 import { useReducer, useEffect } from 'react';
 import axios from "axios";
 
-export const ACTIONS = {
+// Action types as constants
+const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   CLOSE_PHOTO_DETAILS: 'CLOSE_PHOTO_DETAILS',
   GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
 };
 
+// Reducer to handle state changes
 function reducer(state, action) {
   switch (action.type) {
     case ACTIONS.FAV_PHOTO_ADDED:
@@ -46,30 +45,42 @@ const initialState = {
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // Fetch photo data using Axios
+  // Fetch photo data using Axios 
   useEffect(() => {
-    axios.get("http://localhost:8001/api/photos")
-      .then((response) => {
+    async function fetchPhotoData() {
+      try {
+        const response = await axios.get("http://localhost:8001/api/photos");
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: response.data });
-      })
-      .catch((error) => console.log(error));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    
+    fetchPhotoData();
   }, []);
 
   // Fetch topic data using Axios
   useEffect(() => {
-    axios.get("http://localhost:8001/api/topics")
-      .then((response) => {
+    async function fetchTopicData() {
+      try {
+        const response = await axios.get("http://localhost:8001/api/topics");
         dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: response.data });
-      })
-      .catch((error) => console.log(error));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    
+    fetchTopicData();
   }, []);
 
-  const fetchPhotosByTopic = (topicId) => {
-    axios.get(`http://localhost:8001/api/topics/photos/${topicId}`)
-      .then((response) => {
-        dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: response.data });
-      })
-      .catch((error) => console.error('Error:', error));
+  // Fetch photos by topic
+  const fetchPhotosByTopic = async (topicId) => {
+    try {
+      const response = await axios.get(`http://localhost:8001/api/topics/photos/${topicId}`);
+      dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: response.data });
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   const toggleFavorite = (photoId) => {
@@ -77,6 +88,7 @@ const useApplicationData = () => {
     dispatch({ type: actionType, payload: { photoId } });
   };
 
+  
   const openModal = (photoData) => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { photoData } });
   };
