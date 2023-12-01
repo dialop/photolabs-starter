@@ -7,6 +7,7 @@ import PhotoListItem from '../components/PhotoListItem';
 import PhotoFavButton from '../components/PhotoFavButton';
 
 const PhotoDetailsModal = ({ 
+  state,
   isOpen, 
   onClose, 
   data, 
@@ -25,7 +26,14 @@ const PhotoDetailsModal = ({
     onClose();
   };
 
-  const similarPhotos = data.similar_photos || []; 
+  const findDataIndex = () => {
+    for(let i = 0; i < state.photoData.length; i++){
+    if(state.photoData[i].id === data.id){
+      return state.photoData[i].similar_photos;
+    }
+  }
+  };
+const similarPhotos = findDataIndex() || [];
 
   return (
     <div className="photo-details-modal">
@@ -57,7 +65,7 @@ const PhotoDetailsModal = ({
                 <PhotoListItem
                   key={photo.id}
                   data={photo}
-                  onPhotoClick={() => onPhotoClick(photo.id)}
+                  onPhotoClick={onPhotoClick}
                   onFavToggle={() => toggleFavorite(photo.id)}
                   isFavorite={favorites.includes(photo.id)}
                 />

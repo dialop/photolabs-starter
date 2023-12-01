@@ -8,6 +8,7 @@ import axios from 'axios';
 
 const TopNavigationBar = ({
   isFavPhotoExist,
+  fetchPhotosByTopic
 }) => {
   const [topics, setTopics] = useState([]);
 
@@ -30,6 +31,7 @@ const TopNavigationBar = ({
       <span className="top-nav-bar__logo" onClick={reloadPage}>PhotoLabs</span>
       <TopicList
         topics={topics}
+        fetchPhotosByTopic={fetchPhotosByTopic}
       />
       <FavBadge
         isFavPhotoExist={isFavPhotoExist}

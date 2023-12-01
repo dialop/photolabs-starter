@@ -5,13 +5,13 @@ import TopNavigationBar from "../components/TopNavigationBar";
 import PhotoList from "../components/PhotoList";
 import "../styles/HomeRoute.scss";
 
+const HomeRoute = ({ state, onPhotoSelect, updateToFavPhotoIds, fetchPhotosByTopic }) => {
 
-const HomeRoute = ({ state, onPhotoSelect, updateToFavPhotoIds }) => {
   return (
     <div className="home-route">
       <TopNavigationBar 
         isFavPhotoExist={state.favorites.length > 0} 
-        fetchPhotosByTopic={state.fetchPhotosByTopic} 
+        fetchPhotosByTopic={fetchPhotosByTopic}
       />
       <PhotoList 
         data={state.photoData} 
